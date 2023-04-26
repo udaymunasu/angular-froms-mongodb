@@ -1,0 +1,38 @@
+<mat-progress-bar class="progress-bar" value="60"></mat-progress-bar>
+<mat-card class="card">
+
+ <form [formGroup]="secondFormGroup">
+
+  <div class="row">
+    <mat-form-field appearance="fill" class="col-sm-4">
+      <mat-label>Moderate</mat-label>
+      <input type="number" matInput placeholder="0-100" formControlName="moderate" appClickOutside (clickOutside)="handleChange()" required>
+      <mat-error>Moderate Required!</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="fill" class="col-sm-4">
+      <mat-label>Growth</mat-label>
+      <input type="number" matInput placeholder="0-100" formControlName="growth" appClickOutside required>
+      <mat-error>Growth Required!</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="fill" class="col-sm-4">
+      <mat-label>Aggressive Growth</mat-label>
+      <input type="number" matInput placeholder="0-100" formControlName="agGrowth" appClickOutside required>
+      <mat-error>Aggressive Growth Required!</mat-error>
+    </mat-form-field>
+  </div>
+   
+   <div class="doughnut">
+    <canvas baseChart 
+    [labels]="doughnutChartLabels"
+    [datasets]="doughnutChartDataSets" 
+    [type]="'doughnut'">
+    </canvas>
+  </div>
+ 
+   <div>
+   
+    <button mat-button  routerLink="" >Back</button>
+     <button mat-raised-button [disabled]="secondFormGroup.invalid"  routerLink="/social-media" (click)="goToNextStep()">Next</button> 
+  </div> 
+</form> 
+</mat-card> 

@@ -1,0 +1,76 @@
+<mat-progress-bar class="progress-bar" value="30"></mat-progress-bar>
+  <mat-card class="card">
+    <form [formGroup]="firstFormGroup">
+      <div class="row">
+        <mat-form-field appearance="fill" class="col-sm-4">
+          <mat-label>First Name</mat-label>
+          <input matInput placeholder="First name" formControlName="firstName" required>  
+          <!-- <mat-error>FirstName Required!</mat-error> -->
+          <!-- <mat-error *ngIf="firstFormGroup.get('firstName')?.hasError('minlength')">
+            First Name should be atleast 4 characters long!
+          </mat-error> -->
+        <mat-error *ngIf="firstFormGroup.get('firstName')?.hasError('minlength')">
+          First Name should be atleast 4 characters long!
+        </mat-error>
+    
+        <mat-error *ngIf="firstFormGroup.get('firstName')?.hasError('maxlength')">
+          First Name can be max 20 characters long!
+        </mat-error> 
+           
+       
+        </mat-form-field><br>
+        <mat-form-field appearance="fill" class="col-sm-4">
+          <mat-label>Middle Name</mat-label>
+          <input matInput placeholder="Middle name" formControlName="middleName">
+
+        </mat-form-field><br>
+        <mat-form-field appearance="fill" class="col-sm-4">
+          <mat-label>Last Name</mat-label>
+          <input matInput placeholder="Last name, First name" formControlName="lastName">
+        </mat-form-field>
+      </div>
+  
+      <div class="row">
+        <mat-form-field appearance="fill" class="col-sm-4">
+          <mat-label>Birthday</mat-label>
+          <input matInput [matDatepicker]="picker" formControlName="birthday" required>
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+          <mat-error>Please select your date of birth</mat-error>
+        </mat-form-field><br>
+        <mat-form-field appearance="fill" class="col-sm-4">
+          <mat-label>Email</mat-label>
+          <input matInput placeholder="924156@cognizant.com" formControlName="email" required>
+        
+          <mat-error *ngIf="firstFormGroup.get('email')?.hasError('pattern')">
+            Email is not in required format!
+          </mat-error>
+      
+        </mat-form-field><br>
+        <mat-form-field appearance="fill" class="col-sm-4">
+          <mat-label>Communication Email</mat-label>
+          <input matInput placeholder="rekha@gmail.com" formControlName="communicationEmail" required>
+          <!-- <mat-error>Communication Email Required!</mat-error> -->
+          <mat-error *ngIf="firstFormGroup.get('communicationEmail')?.hasError('pattern')">
+            Communication Email is not in required format!
+          </mat-error>
+        </mat-form-field>
+      </div>
+  
+      <div class="row">
+          <mat-form-field appearance="fill" class="col-sm-12">
+            <mat-label>Interests</mat-label>
+            <input matInput placeholder="Last name, First name" formControlName="interests">
+          </mat-form-field>
+        </div>
+      <div>
+  
+        <button mat-raised-button color="primary" routerLink="/marketing" [disabled]="firstFormGroup.invalid" (click)="submitFirstForm()">Next</button>
+      </div>
+    </form>
+  </mat-card>
+
+    
+     
+
+

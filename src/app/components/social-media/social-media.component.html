@@ -1,0 +1,69 @@
+<mat-progress-bar class="progress-bar" value="100"></mat-progress-bar>
+<mat-card class="card">
+<form [formGroup]="thirdFormGroup">
+  <ng-template matStepLabel>Fill out social-media info</ng-template>
+  <div class="row">
+    <mat-form-field appearance="fill" class="col-sm-4">
+      <mat-label>Age group of target client</mat-label>
+      <mat-select formControlName="clientAge" required>
+        <mat-option *ngFor="let age of clientAge" [value]="age">
+          {{ age }}
+        </mat-option>
+      </mat-select>
+      <mat-error>
+        client age is required!
+      </mat-error>
+    </mat-form-field><br>
+    <mat-form-field appearance="fill" class="col-sm-4">
+      <mat-label>Link of your website</mat-label>
+      <input matInput placeholder=" " formControlName="websiteLink">
+    </mat-form-field><br>
+    <mat-form-field appearance="fill" class="col-sm-4">
+
+      <mat-label>Marketing tactics in usage</mat-label>
+      <mat-select formControlName="tactics">
+        <mat-option *ngFor="let tactic of tactics" [value]="tactic">
+          {{ tactic }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div class="row">
+    <mat-form-field appearance="fill" class="col-sm-4">
+      <mat-label>Link of Facebook page</mat-label>
+      <input matInput placeholder="0-100" formControlName="facebook" required>
+      <mat-error *ngIf="thirdFormGroup.get('facebook')?.hasError('pattern')">
+        Facebook link is not in required format!
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="fill" class="col-sm-4">
+      <mat-label>Link of Twitter page</mat-label>
+      <input matInput placeholder="0-100" formControlName="twitter" required>
+      <mat-error *ngIf="thirdFormGroup.get('twitter')?.hasError('pattern')">
+        Twitter link is not in required format!
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="fill" class="col-sm-4">
+      <mat-label>Link of LinkedIn page</mat-label>
+      <input matInput placeholder="0-100" formControlName="linkedIn" required>
+      <mat-error *ngIf="thirdFormGroup.get('linkedIn')?.hasError('pattern')">
+        LinkedIn id is not in required format!
+      </mat-error>
+    </mat-form-field>
+  </div>
+  <ng-template #content>
+    <h1 mat-dialog-title>Hi </h1>
+    <div mat-dialog-content>
+      <p>Do you really want to exit? </p>
+    </div>
+    <div mat-dialog-actions>
+      <button mat-button mat-dialog-close routerLink="/basic-info">Ok</button>
+    </div>
+  </ng-template>
+  <div>
+    <button mat-button  routerLink="/marketing">Back</button>
+    <button mat-raised-button color="primary" (click)="openDialog(content)">Cancel</button>
+    <button mat-raised-button [disabled]="thirdFormGroup.invalid" routerLink="/feedback" (click)="onFormSubmit()">Submit</button>
+  </div>
+</form>
+</mat-card>
